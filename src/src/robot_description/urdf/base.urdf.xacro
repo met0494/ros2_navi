@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <!-- 引入通用惯性参数定义的文件 -->
+    <xacro:include filename="$(find robot_description)/urdf/common_inertia.xacro" />
+
+    <!-- 定义一个名为 base_xacro 的宏，接收 radius 和 length 两个参数 -->
+    <xacro:macro name="base_xacro" params="radius length">
+
+        <!-- Gazebo 中的材质管理，设置基础链接的材质 -->
+        <gazebo reference="base_link">
+            <material>Gazebo/CeilingTiled</material> <!-- 使用 Gazebo 内置的 CeilingTiled 材质 -->
+        </gazebo>
+
+        <!-- 定义基础固定点 link，作为机器人在环境中的位置参考 -->
+        <link name="base_footprint" />
+
+        <!-- 创建一个固定关节，将基础固定点连接到机器人主体 -->
+        <joint name="base_joint" type="fixed">
+            <parent link="base_footprint"/> <!-- 父链接为 base_footprint -->
+            <child link="base_link"/> <!-- 子链接为 base_link -->
+            <!-- 设置关节的原点位置，xyz 表示位置，rpy 表示滚转、俯仰和偏航角 -->
+            <origin xyz="0.0 0.0 ${length/2.0+0.032-0.001}" rpy="0.0 0.0 0.0"/>
+        </joint>
+
+        <!-- 定义机器人主体链接 base_link -->
+        <link name="base_link">
+            <visual> <!-- 可视化表示 -->
+                <origin xyz="0 0 0.0" rpy="0 0 0" /> <!-- 设置可视化的原点位置 -->
+                <geometry> <!-- 几何形状 -->
+                    <cylinder radius="${radius}" length="${length}"/> <!-- 定义一个圆柱体，半径和长度为参数 -->
+                </geometry>
+                <material name="white"> <!-- 设置材质为白色 -->
+                    <color rgba="1.0 1.0 1.0 0.5"/> <!-- RGBA 颜色，白色且透明度为 0.5 -->
+                </material>
+            </visual>
+            <collision> <!-- 碰撞表示 -->
+                <origin xyz="0 0 0.0" rpy="0 0 0" /> <!-- 设置碰撞的原点位置 -->
+                <geometry> <!-- 碰撞几何形状 -->
+                    <cylinder radius="${radius}" length="${length}"/> <!-- 同样定义圆柱体 -->
+                </geometry>
+                <material name="white"> <!-- 碰撞材质为白色 -->
+                    <color rgba="1.0 1.0 1.0 0.5"/> <!-- RGBA 颜色，白色且透明度为 0.5 -->
+                </material>
+            </collision>
+
+            <!-- 计算圆柱体的惯性 -->
+            <xacro:cylinder_inertia m="1.0" r="${radius}" h="${length}" />
+        </link>
+    </xacro:macro> <!-- 宏定义结束 -->
+    
+</robot>

@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:macro name="caster_xacro" params="caster_name xyz">
+
+     <!-- Gazebo 颜色管理 -->
+        <gazebo reference="${caster_name}_caster_link">
+            <material>Gazebo/Grey</material> <!-- 设置 Gazebo 中的材料颜色为灰色 -->
+        </gazebo>
+
+    <!-- ============万向轮============ -->
+        <link name="${caster_name}_caster_link"> <!-- 定义万向轮的链接 -->
+            <visual>
+                <origin xyz="0 0 0" rpy="0.0 0.0 0.0"/> <!-- 视觉表示的原点和方向 -->
+                <geometry>
+                    <sphere radius="0.016"/> <!-- 轮子的几何形状为半径为 0.016 米的球体 -->
+                </geometry>
+                <material name="yellow"> <!-- 定义视觉材料为黄色 -->
+                    <color rgba="1.0 1.0 0.0 0.8"/> <!-- 颜色 RGBA，黄色，80% 不透明 -->
+                </material>
+            </visual>
+            <collision>
+                <origin xyz="0 0 0" rpy="0.0 0.0 0.0"/> <!-- 碰撞检测的原点和方向 -->
+                <geometry>
+                    <sphere radius="0.016"/> <!-- 碰撞几何形状同样为半径为 0.016 米的球体 -->
+                </geometry>
+                <material name="yellow"> <!-- 定义碰撞材料为黄色 -->
+                    <color rgba="1.0 1.0 0.0 0.8"/> <!-- 颜色 RGBA，黄色，80% 不透明 -->
+                </material>
+            </collision>
+
+            <xacro:sphere_inertia m="1.0" r="0.016" /> <!-- 轮子的转动惯量，质量为 1.0 kg，半径为 0.016 米 -->
+        </link>
+
+        <joint name="${caster_name}_caster_joint" type="fixed"> <!-- 定义固定关节 -->
+            <parent link="base_link"/> <!-- 连接到基准链接 base_link -->
+            <child link="${caster_name}_caster_link"/> <!-- 连接到万向轮链接 -->
+            <origin xyz="${xyz}"/> <!-- 设置关节的原点位置 -->
+            <axis xyz="0.0 0.0 0.0"/> <!-- 关节的轴线，这里是零向量，因为是固定关节 -->
+        </joint>
+
+        <!-- 修改轮子的摩擦系数 -->
+        <gazebo reference="${caster_name}_caster_link">
+            <mu1 value="0.0" /> <!-- 静摩擦系数设置为 0.0 -->
+            <mu2 value="0.0" /> <!-- 动摩擦系数设置为 0.0 -->
+            <kp value="1000000000.0" /> <!-- 硬度系数设置为一个非常大的值 -->
+            <kd value="1.0" /> <!-- 阻尼系数设置为 1.0 -->
+        </gazebo>
+    </xacro:macro>
+</robot>
