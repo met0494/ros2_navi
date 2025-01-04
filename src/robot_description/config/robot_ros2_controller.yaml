@@ -1,0 +1,52 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 100 # Hz  # 控制器管理器的更新频率，单位为赫兹，表示每秒更新100次
+    use_sim_time: true  # 使用仿真时间，如果在仿真环境中运行，设置为 true
+
+    robot_joint_state_broadcaster:  # 定义关节状态广播器
+      type: joint_state_broadcaster/JointStateBroadcaster  # 使用关节状态广播器类型
+
+    robot_effort_controller:  # 定义机器人努力控制器
+      type: effort_controllers/JointGroupEffortController  # 使用努力控制器类型
+
+    robot_diff_drive_controller:  # 定义差速驱动控制器
+      type: diff_drive_controller/DiffDriveController  # 使用差速驱动控制器类型
+
+robot_effort_controller:  # 配置努力控制器
+  ros__parameters:
+    joints:  # 控制器所控制的关节列表
+      - left_wheel_joint  # 左轮关节
+      - right_wheel_joint  # 右轮关节
+    command_interfaces:  # 控制器的命令接口
+      - effort  # 使用努力接口来控制关节的努力值
+    state_interfaces:  # 控制器的状态接口
+      - position  # 位置状态接口
+      - velocity  # 速度状态接口
+      - effort  # 努力状态接口
+
+robot_diff_drive_controller:  # 配置差速驱动控制器
+  ros__parameters:
+    left_wheel_names: ["left_wheel_joint"]  # 左边轮子的名称
+    right_wheel_names: ["right_wheel_joint"]  # 右边轮子的名称
+
+    wheel_separation: 0.20  # 轮子之间的距离（单位：米）
+    # wheels_per_side: 1  # 每边轮子的数量，这里只写一个，因为两个轮子是通过一个信号控制的
+    wheel_radius: 0.032  # 轮子的半径（单位：米）
+
+    wheel_separation_multiplier: 1.0  # 轮子间距的乘法因子
+    left_wheel_radius_multiplier: 1.0  # 左轮半径的乘法因子
+    right_wheel_radius_multiplier: 1.0  # 右轮半径的乘法因子
+
+    publish_rate: 50.0  # 里程计信息的发布频率（单位：赫兹）
+    odom_frame_id: odom  # 里程计坐标系的标识符
+    base_frame_id: base_footprint  # 基准框架的标识符
+    pose_covariance_diagonal: [0.001, 0.001, 0.0, 0.0, 0.0, 0.01]  # 位姿协方差矩阵的对角元素列表
+    twist_covariance_diagonal: [0.001, 0.0, 0.0, 0.0, 0.0, 0.01]  # 速度协方差矩阵的对角元素列表
+
+    open_loop: true  # 是否使用开环控制，true 表示使用开环控制
+    enable_odom_tf: true  # 是否启用里程计的坐标变换
+
+    cmd_vel_timeout: 0.5  # 接受 cmd_vel 命令的超时时间（单位：秒）
+    # publish_limited_velocity: true  # 是否发布限制的速度（注释掉了）
+    use_stamped_vel: false  # 是否使用带时间戳的速度消息来表示速度命令
+    # velocity_rolling_window_size: 10  # 速度滚动窗口的大小（注释掉了）
