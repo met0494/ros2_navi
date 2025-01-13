@@ -59,7 +59,7 @@
   </joint>
 
   <link
-    name="left wheel_Link">
+    name="left_wheel_Link">
     <inertial>
       <origin
         xyz="0 0.00038056 0"
@@ -107,12 +107,12 @@
     <parent
       link="base_link" />
     <child
-      link="left wheel_Link" />
+      link="left_wheel_Link" />
     <axis
       xyz="0 -1 0" />
   </joint>
   <link
-    name="right wheel_Link">
+    name="right_wheel_Link">
     <inertial>
       <origin
         xyz="0 -0.000380563343778464 0"
@@ -160,7 +160,7 @@
     <parent
       link="base_link" />
     <child
-      link="right wheel_Link" />
+      link="right_wheel_Link" />
     <axis
       xyz="0 1 0" />
   </joint>

@@ -1,0 +1,52 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 100 # Hz
+    use_sim_time: true
+
+    robot_joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+    robot_effort_controller:
+      type: effort_controllers/JointGroupEffortController
+    
+    robot_diff_drive_controller:
+      type: diff_drive_controller/DiffDriveController
+  
+robot_effort_controller:
+  ros__parameters:
+    joints:
+      - left_wheel_joint
+      - right_wheel_joint
+    command_interfaces:
+      - effort
+    state_interfaces:
+      - position
+      - velocity
+      - effort
+
+robot_diff_drive_controller:
+  ros__parameters:
+    left_wheel_names: ["left_wheel_joint"]  # 左边轮子名字
+    right_wheel_names: ["right_wheel_joint"]  # 右边轮子名字
+
+    wheel_separation: 0.20  # 轮子之间的距离/m
+    # wheels_per_side: 1  # 轮子实际上只有两个，但是都是依靠一个信号控制的，所以我们这里只写了一个
+    wheel_radius: 0.032 # 轮子的半径/m
+
+    wheel_separation_multiplier: 1.0  # 轮子间距的乘法因子
+    left_wheel_radius_multiplier: 1.0 # 左轮半径的乘法因子
+    right_wheel_radius_multiplier: 1.0  # 右路半径的乘法因子
+
+    publish_rate: 50.0  # 里程信息的发布频率/Hz
+    odom_frame_id: odom # 里程计坐标系的id
+    base_frame_id: base_footprint # 基准框架的id
+    pose_covariance_diagonal: [0.001, 0.001, 0.0, 0.0, 0.0, 0.01] # 位姿协方差矩阵对角元素列表
+    twist_covariance_diagonal: [0.001, 0.0, 0.0, 0.0, 0.0, 0.01]  # 速度协方差矩阵对角元素列表
+
+    open_loop: true # 是否开环控制
+    enable_odom_tf: true  # 是否启用里程计的坐标转换
+
+    cmd_vel_timeout: 0.5  # 接受cmd_vel命令的超时时间/s
+    #publish_limited_velocity: true
+    use_stamped_vel: false  # 是否适用 Stamped Twist 消息来代表速度命令
+    #velocity_rolling_window_size: 10
