@@ -1,0 +1,388 @@
+
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="robot_description">
+  
+  <link name="base_footprint">
+        <visual>
+            <geometry>
+                <sphere radius="0.001" />
+            </geometry>
+        </visual>
+  </link>
+
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="-0.038216 -8.44E-05 0.027327"
+        rpy="0 0 0" />
+      <mass
+        value="1.4603" />
+      <inertia
+        ixx="0.0015601"
+        ixy="-3.2373E-06"
+        ixz="-5.9153E-14"
+        iyy="0.0019288"
+        iyz="9.6369E-14"
+        izz="0.0032508" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/met0494/ws/srp_rebuild_ws2/src/robot_description/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/met0494/ws/srp_rebuild_ws2/src/robot_description/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="base_link2base_footprint" type="fixed">
+        <parent link="base_footprint" />
+        <child link="base_link" />
+        <origin xyz="0 0 0.05" />
+  </joint>
+
+  <link
+    name="left_wheel_Link">
+    <inertial>
+      <origin
+        xyz="0 0.00038056 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.052388" />
+      <inertia
+        ixx="2.0994E-05"
+        ixy="-4.4945E-23"
+        ixz="-2.9089E-21"
+        iyy="3.6342E-05"
+        iyz="-7.6008E-22"
+        izz="2.0994E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/met0494/ws/srp_rebuild_ws2/src/robot_description/meshes/left_wheel_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.29804 0.29804 0.29804 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/met0494/ws/srp_rebuild_ws2/src/robot_description/meshes/left_wheel_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="wheel_1_joint"
+    type="continuous">
+    <origin
+      xyz="0 0.0805 0"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="left_wheel_Link" />
+    <axis
+      xyz="0 -1 0" />
+  </joint>
+  <link
+    name="right_wheel_Link">
+    <inertial>
+      <origin
+        xyz="0 -0.000380563343778464 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.0523884928070869" />
+      <inertia
+        ixx="2.0993992477975E-05"
+        ixy="1.04563423025786E-21"
+        ixz="-4.90757686064805E-21"
+        iyy="3.63419758974315E-05"
+        iyz="-3.87238137038941E-22"
+        izz="2.0993992477975E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/met0494/ws/srp_rebuild_ws2/src/robot_description/meshes/right_wheel_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.298039215686275 0.298039215686275 0.298039215686275 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/met0494/ws/srp_rebuild_ws2/src/robot_description/meshes/right_wheel_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="wheel_0_joint"
+    type="continuous">
+    <origin
+      xyz="0 -0.0805 0"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="right_wheel_Link" />
+    <axis
+      xyz="0 1 0" />
+  </joint>
+  
+
+  
+  <link
+    name="laser_link">
+    <inertial>
+      <origin
+        xyz="-0.000209603604888892 0.000120725179128181 -0.0130198762076914"
+        rpy="0 0 0" />
+      <mass
+        value="0.271699069265791" />
+      <inertia
+        ixx="0.000176953743407116"
+        ixy="-9.81784129253812E-07"
+        ixz="7.40933729651027E-07"
+        iyy="0.000175815280510695"
+        iyz="-4.25610950774227E-07"
+        izz="0.000216450514269569" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/met0494/ws/srp_rebuild_ws2/src/robot_description/meshes/laser_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.0588235294117647 0.00784313725490196 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/met0494/ws/srp_rebuild_ws2/src/robot_description/meshes/laser_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="laser_Joint"
+    type="fixed">
+    <origin
+      xyz="0.030241 0 0.078"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="laser_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="imu_link">
+    <inertial>
+      <origin
+        xyz="-0.0118048114611219 0.00476237507254301 0.0161629596094779"
+        rpy="0 0 1.570795"/>
+      <mass
+        value="0.11536190896587" />
+      <inertia
+        ixx="4.23390940100757E-05"
+        ixy="-5.04799743132961E-06"
+        ixz="3.27071760564096E-06"
+        iyy="0.000102102543007273"
+        iyz="-1.42151378488866E-06"
+        izz="0.000142119092712528" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/met0494/ws/srp_rebuild_ws2/src/robot_description/meshes/imu_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/met0494/ws/srp_rebuild_ws2/src/robot_description/meshes/imu_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="imu_Joint"
+    type="fixed">
+    <origin
+      xyz="-0.069143 -0.00060249 0.0496"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="imu_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="camera_Link">
+    <inertial>
+      <origin
+        xyz="-0.0134865628133561 1.27245263181684E-05 -0.000996029858569822"
+        rpy="0 0 0" />
+      <mass
+        value="0.051766418456575" />
+      <inertia
+        ixx="9.97264271995822E-06"
+        ixy="2.08531930861835E-08"
+        ixz="2.14894522402641E-08"
+        iyy="6.12375111728941E-06"
+        iyz="2.5961088858632E-08"
+        izz="6.47430815164643E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/met0494/ws/srp_rebuild_ws2/src/robot_description/meshes/camera_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.894117647058823 0.913725490196078 0.929411764705882 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/met0494/ws/srp_rebuild_ws2/src/robot_description/meshes/camera_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="camera"
+    type="fixed">
+    <origin
+      xyz="0.0655 0 0.13"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="camera_Link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="ultrasonic_Link">
+    <inertial>
+      <origin
+        xyz="-0.0140272334793631 -1.11605403516571E-05 -0.00464300862011404"
+        rpy="0 0 0" />
+      <mass
+        value="0.0615432903089949" />
+      <inertia
+        ixx="1.27424335268755E-05"
+        ixy="4.7683287909434E-09"
+        ixz="-5.3359935632812E-07"
+        iyy="5.84778747686444E-06"
+        iyz="-2.54153829450142E-10"
+        izz="1.01881337457794E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/met0494/ws/srp_rebuild_ws2/src/robot_description/meshes/ultrasonic_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.894117647058823 0.913725490196078 0.929411764705882 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/met0494/ws/srp_rebuild_ws2/src/robot_description/meshes/ultrasonic_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="ultrasonic_Joint"
+    type="fixed">
+    <origin
+      xyz="0.072976 0 0.00825"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="ultrasonic_Link" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+</robot>

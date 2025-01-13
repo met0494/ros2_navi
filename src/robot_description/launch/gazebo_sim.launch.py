@@ -6,10 +6,10 @@ import launch_ros.parameter_descriptions
 
 def generate_launch_description():
     # 获取默认路径
-    robot_name_in_model = "rohbot"
+    robot_name_in_model = "robot"
     urdf_tutorial_path = get_package_share_directory('robot_description')
-    default_model_path = urdf_tutorial_path + '/urdf/robot.urdf.xacro'
-    default_world_path = urdf_tutorial_path + '/world/custom_room.world'
+    default_model_path = urdf_tutorial_path + '/urdf/robot_description.urdf'
+    default_world_path = '/usr/share/gazebo-11/worlds/empty.world'  # urdf_tutorial_path + '/world/custom_room.world'
     
     #为 launch 声明参数
     action_declare_arg_mode_path = launch.actions.DeclareLaunchArgument(

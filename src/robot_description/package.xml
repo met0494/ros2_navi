@@ -2,30 +2,18 @@
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
   <name>robot_description</name>
-  <version>1.0.0</version>
-  <description>主要用于导航小车的模型描述</description>
-  <maintainer email="anchirit@foxmail.com">anchirit</maintainer>
+  <version>0.0.0</version>
+  <description>TODO: Package description</description>
+  <maintainer email="met0494@todo.todo">met0494</maintainer>
+  <license>TODO: License declaration</license>
 
-  <license>MIT License</license>
-  <!-- 构建工具依赖 -->
-  <buildtool_depend>ament_cmake</buildtool_depend>
-
-  <!-- 构建依赖（编译时需要的依赖） -->
-  <build_depend>launch</build_depend>
-  <build_depend>launch_ros</build_depend>
-  <build_depend>ament_index_python</build_depend>
-
-  <!-- 运行时依赖 -->
-  <exec_depend>launch</exec_depend>
-  <exec_depend>launch_ros</exec_depend>
-  <exec_depend>ament_index_python</exec_depend>
-
-  <!-- 测试依赖 -->
-  <test_depend>ament_lint_auto</test_depend>
-  <test_depend>ament_lint_common</test_depend>
-
-  <!-- 导出信息 -->
+  <test_depend>ament_copyright</test_depend>
+  <test_depend>ament_flake8</test_depend>
+  <test_depend>ament_pep257</test_depend>
+  <test_depend>python3-pytest</test_depend>
+  
+  
   <export>
-    <build_type>ament_cmake</build_type>
+    <build_type>ament_python</build_type>
   </export>
 </package>
